@@ -12,7 +12,7 @@
 
 (function($) {
 
-var types = ['DOMMouseScroll', 'mousewheel'];
+var types = ['DOMMouseScroll', 'mousewheel', 'MozMousePixelScroll'];
 
 if ($.event.fixHooks) {
     for ( var i=types.length; i; ) {
@@ -60,7 +60,14 @@ function handler(event) {
     
     // Old school scrollwheel delta
     if ( orgEvent.wheelDelta ) { delta = orgEvent.wheelDelta/120; }
-    if ( orgEvent.detail     ) { delta = -orgEvent.detail/3; }
+    if ( orgEvent.detail ) {
+        if ( orgEvent.type == types[2] ) {
+            this.removeEventListener(types[0], handler, false);
+            delta = -orgEvent.wheelDelta/42;
+        } else {
+            delta = -orgEvent.detail/3;
+        }
+    }
     
     // New school multidimensional scroll (touchpads) deltas
     deltaY = delta;
