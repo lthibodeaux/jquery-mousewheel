@@ -18,9 +18,7 @@ Here is an example of using add a mousewheel event to an element.
     });
 
     // unbinding an event
-    $("#my_elem").off("mousewheel", function(event, delta, deltaX, deltaY) {
-        console.log(delta, deltaX, deltaY);
-    });
+    $("#my_elem").off("mousewheel");
 
 
 ## License
