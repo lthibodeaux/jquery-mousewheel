@@ -30,6 +30,6 @@ This plugin is licensed under the MIT License (LICENSE.txt).
 Copyright (c) 2012 [Andrew Cobby](http://cobbweb.me), [Brandon Aaron](http://brandonaaron.net)
 
 Also thanks to:
- * http://adomas.org/javascript-mouse-wheel/ for some pointers.
- * Mathias Bank (http://www.mathias-bank.de) for a scope bug fix.
- * Seamus Leahy for adding deltaX and deltaY
+* http://adomas.org/javascript-mouse-wheel/ for some pointers.
+* Mathias Bank (http://www.mathias-bank.de) for a scope bug fix.
+* Seamus Leahy for adding deltaX and deltaY
