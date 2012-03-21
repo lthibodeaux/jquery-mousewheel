@@ -10,7 +10,7 @@ At present, diagonal scrolling doesn't work in Firefox (i.e. different `deltaX` 
 
 ## Usage
 
-Here is an example of using add a mousewheel event to an element.
+Here is an example of binding a mousewheel event to an element.
 
     // binding an event
     $("#my_elem").on("mousewheel", function(event, delta, deltaX, deltaY) {
