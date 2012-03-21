@@ -10,7 +10,8 @@
  *
  * Version: 2.0.0
  *
- * Requires jQuery: 1.7+
+ * Recommended for jQuery 1.7+
+ * Should work with older versions though
  */
 
 (function($,undefined) {

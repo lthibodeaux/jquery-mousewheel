@@ -1,8 +1,6 @@
 # jQuery Mouse Wheel Plugin
 
-A jQuery v1.7+ plugin that adds cross-browser mouse wheel support.
-
-**Pre v1.7 jQuery support:** Use [Brandon Aaron's](http://brandonaaron.net) original [jquery-mousewheel](https://github.com/brandonaaron/jquery-mousewheel) if you're using an older version of jQuery.
+A jQuery plugin that adds cross-browser mouse wheel support.
 
 This plugin adds a "mousewheel" event into jQuery from which you can build custom mousewheel support into your application. Your event callback receives four arguments, `event`, `delta`, `deltaX` and `deltaY` - these are the normalized delta values. `delta` will always be the biggest value of `deltaX` and `deltaY` and you can use it if you don't care about scrolling direction.
 
