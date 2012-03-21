@@ -1,24 +1,35 @@
-# jQuery Mouse Wheel Plugin
+## jQuery Mouse Wheel Plugin
 
 A jQuery plugin that adds cross-browser mouse wheel support.
 
-In order to use the plugin, simply bind the "mousewheel" event to an element. It also provides two helper methods called `mousewheel` and `unmousewheel` that act just like other event helper methods in jQuery. The event callback receives three extra arguments which are the normalized "deltas" of the mouse wheel. 
+This plugin adds a "mousewheel" event into jQuery from which you can build custom mousewheel support into your application. Your event callback receives for arguments, `event`, `delta`, `deltaX` and `deltaY` - these are the normalized delta values. `delta` will always be the biggest value of `deltaX` and `deltaY` and you can use it if you don't care about scrolling direction.
 
-Here is an example of using both the bind and helper method syntax.
+### Notes on Firefox
 
-    // using bind
-    $('#my_elem').bind('mousewheel', function(event, delta, deltaX, deltaY) {
+At present, diagonal scrolling doesn't work in Firefox (i.e. different `deltaX` and `deltaY` values) - this is a limitation with Firefox and there is no work around :( Clone the repo and fire up test/index.html and see the difference between Chrome and Firefox.
+
+### Usage
+
+Here is an example of using add a mousewheel event to an element.
+
+    // binding an event
+    $("#my_elem").on("mousewheel", function(event, delta, deltaX, deltaY) {
         console.log(delta, deltaX, deltaY);
     });
-    
-    // using the event helper
-    $('#my_elem').mousewheel(function(event, delta, deltaX, deltaY) {
+
+    // unbinding an event
+    $("#my_elem").off("mousewheel", function(event, delta, deltaX, deltaY) {
         console.log(delta, deltaX, deltaY);
     });
 
 
-## License
+### License
 
 This plugin is licensed under the MIT License (LICENSE.txt).
 
-Copyright (c) 2011 [Brandon Aaron](http://brandonaaron.net)
+Copyright (c) 2012 [Andrew Cobby](http://cobbweb.me), [Brandon Aaron](http://brandonaaron.net)
+
+Also thanks to:
+ * http://adomas.org/javascript-mouse-wheel/ for some pointers.
+ * Mathias Bank (http://www.mathias-bank.de) for a scope bug fix.
+ * Seamus Leahy for adding deltaX and deltaY
