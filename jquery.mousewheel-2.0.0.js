@@ -86,7 +86,7 @@
         // Merge normalized data
         $.extend(event, normData);
 
-        return ($.event.dispatch || $.event.handle).apply(this, event);
+        return ($.event.dispatch || $.event.handle).apply(this, [event]);
     }
 
 })(jQuery);
