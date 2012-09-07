@@ -47,47 +47,46 @@
     };
 
     function handler(event) {
-        var orgEvent = event || window.event, args = [].slice.call(arguments, 1), delta = 0, deltaX = 0, deltaY = 0;
+        var orgEvent = event || window.event, normData = { delta: null, deltaX: null, deltaY: null, type: "mousewheel" };
         event = $.event.fix(orgEvent);
-        event.type = "mousewheel";
 
         // Old school scrollwheel delta
         if (orgEvent.wheelDelta) {
-            delta = orgEvent.wheelDelta / 120;
+            normData.delta = orgEvent.wheelDelta / 120;
         }
 
         if (orgEvent.detail) {
             if (orgEvent.type == types[2]) {
                 // Firefox 4+, unbind old DOMMouseScroll event
                 this.removeEventListener(types[0], handler, false);
-                delta = -orgEvent.detail / 42;
+                normData.delta = -orgEvent.detail / 42;
             } else {
-                delta = -orgEvent.detail / 3;
+                normData.delta = -orgEvent.detail / 3;
             }
         }
 
         // New school multidimensional scroll (touchpads) deltas
-        deltaY = delta;
+        normData.deltaY = normData.delta;
 
         // Gecko
         if (orgEvent.axis !== undefined && orgEvent.axis === orgEvent.HORIZONTAL_AXIS) {
-            deltaY = 0;
-            deltaX = -1 * delta;
+            normData.deltaY = 0;
+            normData.deltaX = -1 * normData.delta;
         }
 
         // Webkit
         if (orgEvent.wheelDeltaY !== undefined) {
-            deltaY = orgEvent.wheelDeltaY / 120;
+            normData.deltaY = orgEvent.wheelDeltaY / 120;
         }
 
         if (orgEvent.wheelDeltaX !== undefined) {
-            deltaX = -1 * orgEvent.wheelDeltaX / 120;
+            normData.deltaX = -1 * orgEvent.wheelDeltaX / 120;
         }
 
-        // Add event and delta to the front of the arguments
-        args.unshift(event, delta, deltaX, deltaY);
+        // Merge normalized data
+        $.extend(event, normData);
 
-        return ($.event.dispatch || $.event.handle).apply(this, args);
+        return ($.event.dispatch || $.event.handle).apply(this, event);
     }
 
 })(jQuery);
